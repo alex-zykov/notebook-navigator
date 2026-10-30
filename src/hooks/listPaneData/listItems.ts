@@ -46,6 +46,7 @@ import { getCachedWordCountTargetFromFrontmatter, getWordCountTargetFromProperti
 import { createHiddenTagVisibility } from '../../utils/tagPrefixMatcher';
 import { getCachedFileTags } from '../../utils/tagUtils';
 import { DateUtils } from '../../utils/dateUtils';
+import { getFilePropertyRecord } from '../../utils/filePropertyOverrides';
 import { buildListGroupCollapseKey } from '../../utils/listGroupCollapse';
 import { sortFolderSiblings, type FolderSiblingOrderOptions } from '../../utils/treeFlattener';
 import type { AliasSearchMatch, PropertySearchMatch, SearchResultMeta } from '../../types/search';
@@ -91,6 +92,8 @@ interface BuildListItemsArgs {
     manualSortGroupHeaderPropertyKey?: string | null;
     wordCountTargetProperty?: string;
     groupItemCountData?: ListGroupItemCountData;
+    /** Sidecar properties for non-Markdown files used by property grouping. */
+    filePropertyOverrides?: NotebookNavigatorSettings['filePropertyOverrides'];
 }
 
 export type CollapsedListGroupRevealTarget = { type: 'pinned' } | { type: 'list-group'; collapseKey: string };
@@ -226,7 +229,8 @@ function buildListItemsInternal(
         isManualSortActive = false,
         manualSortGroupHeaderPropertyKey = null,
         wordCountTargetProperty = '',
-        groupItemCountData
+        groupItemCountData,
+        filePropertyOverrides
     }: BuildListItemsArgs,
     includeFileItems: boolean,
     collectGroupItemCounts: boolean
@@ -582,10 +586,11 @@ function buildListItemsInternal(
         const ungroupedFiles: TFile[] = [];
 
         unpinnedFiles.forEach(file => {
-            const groupingValue =
+            const propertyRecord =
                 file.extension === 'md'
-                    ? getPropertyGroupingValueFromRecord(app.metadataCache.getFileCache(file)?.frontmatter, propertyGroupingKey)
-                    : null;
+                    ? app.metadataCache.getFileCache(file)?.frontmatter
+                    : getFilePropertyRecord(file, filePropertyOverrides);
+            const groupingValue = getPropertyGroupingValueFromRecord(propertyRecord, propertyGroupingKey);
             if (groupingValue === null) {
                 ungroupedFiles.push(file);
                 return;

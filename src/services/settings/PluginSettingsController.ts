@@ -103,6 +103,7 @@ import { normalizeNavigationSeparatorKey } from '../../utils/navigationSeparator
 import { normalizeUXIconMapRecord } from '../../utils/uxIcons';
 import { sanitizeKeyboardShortcuts } from '../../utils/keyboardShortcuts';
 import { pruneUnavailablePropertySortOverrides, reconcileDefaultFolderSort } from '../../utils/sortUtils';
+import { sanitizeFilePropertyOverrides } from '../../utils/filePropertyOverrides';
 import { pruneUnavailablePropertyGroupingOverrides, reconcileDefaultNoteGrouping } from '../../utils/listGrouping';
 import { isRecord } from '../../utils/typeGuards';
 import { normalizeOptionalVaultFilePath } from '../../utils/pathUtils';
@@ -1423,6 +1424,7 @@ export class PluginSettingsController {
         this.currentSettings.folderBackgroundColors = sanitizeStringMap(this.currentSettings.folderBackgroundColors);
         this.currentSettings.fileColors = sanitizeStringMap(this.currentSettings.fileColors);
         this.currentSettings.fileBackgroundColors = sanitizeStringMap(this.currentSettings.fileBackgroundColors);
+        this.currentSettings.filePropertyOverrides = sanitizeFilePropertyOverrides(this.currentSettings.filePropertyOverrides);
         this.currentSettings.tagColors = sanitizeStringMap(this.currentSettings.tagColors);
         this.currentSettings.tagBackgroundColors = sanitizeStringMap(this.currentSettings.tagBackgroundColors);
         this.currentSettings.propertyColors = sanitizeStringMap(this.currentSettings.propertyColors);

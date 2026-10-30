@@ -51,6 +51,7 @@ type MetadataFields = {
     fileIcons: Record<string, string>;
     fileColors: Record<string, string>;
     fileBackgroundColors: Record<string, string>;
+    filePropertyOverrides: Record<string, Record<string, unknown>>;
     tagColors: Record<string, string>;
     tagIcons: Record<string, string>;
     tagBackgroundColors: Record<string, string>;

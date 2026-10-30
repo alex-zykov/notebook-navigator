@@ -453,6 +453,7 @@ export const DEFAULT_SETTINGS: NotebookNavigatorSettings = {
     fileIcons: sanitizeRecord<string>(undefined),
     fileColors: sanitizeRecord<string>(undefined),
     fileBackgroundColors: sanitizeRecord<string>(undefined),
+    filePropertyOverrides: sanitizeRecord<Record<string, unknown>>(undefined),
     folderIcons: sanitizeRecord<string>(undefined),
     folderColors: sanitizeRecord<string>(undefined),
     folderBackgroundColors: sanitizeRecord<string>(undefined),

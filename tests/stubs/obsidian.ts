@@ -392,17 +392,66 @@ function parseInlineArray(value: string): string[] | null {
 }
 
 /**
+ * Parses a single YAML scalar / flow sequence for property value cells.
+ */
+function parseYamlScalar(value: string): unknown {
+    const trimmed = value.trim();
+    if (!trimmed) {
+        return null;
+    }
+
+    // Real js-yaml rejects a bare `: …` document; keep that behavior so callers can fall back.
+    if (trimmed.startsWith(':')) {
+        throw new Error('bad indentation of a mapping entry');
+    }
+
+    const inlineArray = parseInlineArray(trimmed);
+    if (inlineArray) {
+        return inlineArray;
+    }
+
+    if (/^-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?$/u.test(trimmed)) {
+        return Number(trimmed);
+    }
+
+    if (trimmed === 'true') {
+        return true;
+    }
+    if (trimmed === 'false') {
+        return false;
+    }
+    if (trimmed === 'null' || trimmed === '~') {
+        return null;
+    }
+
+    return stripSurroundingQuotes(trimmed);
+}
+
+/**
  * Minimal YAML parser for Vitest stubs.
  * Supports frontmatter patterns used by the plugin:
  * - `key: value`
  * - `key: [a, b]`
  * - `key:` followed by `- item` list entries
+ * Also parses single-value documents used by file property cells (`1`, `Hub`, `[a, b]`).
  */
-export function parseYaml(yaml: string): Record<string, unknown> {
+export function parseYaml(yaml: string): unknown {
+    const lines = yaml.split(/\r?\n/u);
+    const hasMappingLine = lines.some(rawLine => {
+        const trimmedLine = rawLine.trim();
+        if (!trimmedLine || trimmedLine.startsWith('#') || trimmedLine.startsWith('-')) {
+            return false;
+        }
+        return rawLine.indexOf(':') > 0;
+    });
+
+    if (!hasMappingLine) {
+        return parseYamlScalar(yaml);
+    }
+
     const result: Record<string, unknown> = {};
     let currentListKey: string | null = null;
 
-    const lines = yaml.split(/\r?\n/u);
     for (const rawLine of lines) {
         const trimmedLine = rawLine.trim();
         if (!trimmedLine || trimmedLine.startsWith('#')) {
@@ -451,10 +500,80 @@ export function parseYaml(yaml: string): Record<string, unknown> {
             continue;
         }
 
+        if (/^-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?$/u.test(rawValue)) {
+            result[key] = Number(rawValue);
+            continue;
+        }
+
         result[key] = stripSurroundingQuotes(rawValue);
     }
 
     return result;
+}
+
+/**
+ * Minimal YAML serializer for Vitest stubs. Appends a trailing newline like Obsidian's stringifyYaml.
+ */
+export function stringifyYaml(obj: unknown): string {
+    if (obj === null || obj === undefined) {
+        return 'null\n';
+    }
+
+    if (typeof obj === 'number' || typeof obj === 'boolean') {
+        return `${obj}\n`;
+    }
+
+    if (typeof obj === 'string') {
+        if (
+            obj.length === 0 ||
+            obj === 'true' ||
+            obj === 'false' ||
+            obj === 'null' ||
+            obj === '~' ||
+            /^-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?$/u.test(obj) ||
+            /[:#\[\]{},&*!|>'%@`]|^\s|\s$/u.test(obj)
+        ) {
+            return `${JSON.stringify(obj)}\n`;
+        }
+        return `${obj}\n`;
+    }
+
+    if (Array.isArray(obj)) {
+        const parts = obj.map(item => {
+            if (typeof item === 'string') {
+                return /[:#\[\]{},&*!|>'%@`]|^\s|\s$/u.test(item) ? JSON.stringify(item) : item;
+            }
+            if (typeof item === 'number' || typeof item === 'boolean' || item === null) {
+                return String(item);
+            }
+            return JSON.stringify(item);
+        });
+        return `[${parts.join(', ')}]\n`;
+    }
+
+    if (typeof obj === 'object') {
+        const entries = Object.entries(obj as Record<string, unknown>);
+        if (entries.length === 0) {
+            return '{}\n';
+        }
+        return (
+            entries
+                .map(([key, value]) => {
+                    if (Array.isArray(value)) {
+                        const dump = stringifyYaml(value).replace(/\n$/u, '');
+                        return `${key}: ${dump}`;
+                    }
+                    if (value !== null && typeof value === 'object') {
+                        return `${key}: ${JSON.stringify(value)}`;
+                    }
+                    const dump = stringifyYaml(value).replace(/\n$/u, '');
+                    return `${key}: ${dump}`;
+                })
+                .join('\n') + '\n'
+        );
+    }
+
+    return `${String(obj)}\n`;
 }
 
 export type CachedMetadata = {

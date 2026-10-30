@@ -482,6 +482,18 @@ export class MetadataService {
         return this.fileService.removeFileBackgroundColor(filePath);
     }
 
+    getFileProperties(filePath: string): Record<string, unknown> | null {
+        return this.fileService.getFileProperties(filePath);
+    }
+
+    async setFileProperties(filePath: string, record: Record<string, unknown>): Promise<void> {
+        return this.fileService.setFileProperties(filePath, record);
+    }
+
+    async mergeFileProperties(filePath: string, record: Record<string, unknown>): Promise<void> {
+        return this.fileService.mergeFileProperties(filePath, record);
+    }
+
     /**
      * Gets the color for a file, checking frontmatter first if enabled
      * @param filePath - Path to the file
@@ -647,7 +659,12 @@ export class MetadataService {
             collectChildOrderKeys(settings.tagChildOrder, (parentPath, name) => `${parentPath}/${name}`)
         ]);
 
-        const fileKeys = MetadataService.collectUniqueKeys([settings.fileIcons, settings.fileColors, settings.fileBackgroundColors]);
+        const fileKeys = MetadataService.collectUniqueKeys([
+            settings.fileIcons,
+            settings.fileColors,
+            settings.fileBackgroundColors,
+            settings.filePropertyOverrides
+        ]);
         const propertyKeys = MetadataService.collectUniqueKeys([
             settings.propertyColors,
             settings.propertyBackgroundColors,

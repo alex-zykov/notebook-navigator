@@ -500,6 +500,9 @@ export class FileMetadataService extends BaseMetadataService {
             if (settings.fileBackgroundColors?.[filePath]) {
                 delete settings.fileBackgroundColors[filePath];
             }
+            if (settings.filePropertyOverrides?.[filePath]) {
+                delete settings.filePropertyOverrides[filePath];
+            }
 
             this.updateShortcuts(settings, shortcut => {
                 if (!isNoteShortcut(shortcut)) {
@@ -535,6 +538,7 @@ export class FileMetadataService extends BaseMetadataService {
             changed = this.updateNestedPaths(settings.fileIcons, oldPath, newPath) || changed;
             changed = this.updateNestedPaths(settings.fileColors, oldPath, newPath) || changed;
             changed = this.updateNestedPaths(settings.fileBackgroundColors, oldPath, newPath) || changed;
+            changed = this.updateNestedPaths(settings.filePropertyOverrides, oldPath, newPath) || changed;
             changed = renameTemplateReferences(settings, oldPath, newPath) || changed;
 
             if (oldVaultIconId && newVaultIconId) {
@@ -844,6 +848,59 @@ export class FileMetadataService extends BaseMetadataService {
     }
 
     /**
+     * Gets the sidecar property record for a file from settings storage.
+     * @param filePath - Path to the file
+     * @returns A copy of the property record, or null when none is stored
+     */
+    getFileProperties(filePath: string): Record<string, unknown> | null {
+        const record = this.settingsProvider.settings.filePropertyOverrides?.[filePath];
+        if (!record || Object.keys(record).length === 0) {
+            return null;
+        }
+        return { ...record };
+    }
+
+    /**
+     * Replaces the sidecar property record for a file. An empty record removes the path entry.
+     * @param filePath - Path to the file
+     * @param record - Full property record to store
+     */
+    async setFileProperties(filePath: string, record: Record<string, unknown>): Promise<void> {
+        await this.saveAndUpdate(settings => {
+            if (!settings.filePropertyOverrides) {
+                settings.filePropertyOverrides = {};
+            }
+
+            if (Object.keys(record).length === 0) {
+                delete settings.filePropertyOverrides[filePath];
+                return;
+            }
+
+            settings.filePropertyOverrides[filePath] = { ...record };
+        });
+    }
+
+    /**
+     * Merges keys into the sidecar property record for a file, keeping existing keys not present in the patch.
+     * @param filePath - Path to the file
+     * @param record - Keys to add or overwrite
+     */
+    async mergeFileProperties(filePath: string, record: Record<string, unknown>): Promise<void> {
+        if (Object.keys(record).length === 0) {
+            return;
+        }
+
+        await this.saveAndUpdate(settings => {
+            if (!settings.filePropertyOverrides) {
+                settings.filePropertyOverrides = {};
+            }
+
+            const existing = settings.filePropertyOverrides[filePath] ?? {};
+            settings.filePropertyOverrides[filePath] = { ...existing, ...record };
+        });
+    }
+
+    /**
      * Clean up pinned notes using pre-loaded validators
      * @param validators - Pre-loaded data containing vault files
      * @returns True if any metadata was removed/changed
@@ -883,8 +940,11 @@ export class FileMetadataService extends BaseMetadataService {
         const fileBackgroundCleanup = await this.cleanupMetadata(targetSettings, 'fileBackgroundColors', path =>
             validators.vaultFiles.has(path)
         );
+        const filePropertyCleanup = await this.cleanupMetadata(targetSettings, 'filePropertyOverrides', path =>
+            validators.vaultFiles.has(path)
+        );
 
-        return hasChanges || fileIconCleanup || fileColorCleanup || fileBackgroundCleanup;
+        return hasChanges || fileIconCleanup || fileColorCleanup || fileBackgroundCleanup || filePropertyCleanup;
     }
 
     /**

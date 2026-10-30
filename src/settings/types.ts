@@ -997,6 +997,11 @@ export interface NotebookNavigatorSettings {
     fileIcons: Record<string, string>;
     fileColors: Record<string, string>;
     fileBackgroundColors: Record<string, string>;
+    /**
+     * Sidecar properties for non-Markdown files (path → key → value). Used for list grouping
+     * inside Notebook Navigator only; not written to the files or Obsidian frontmatter.
+     */
+    filePropertyOverrides: Record<string, Record<string, unknown>>;
     folderIcons: Record<string, string>;
     folderColors: Record<string, string>;
     folderBackgroundColors: Record<string, string>;

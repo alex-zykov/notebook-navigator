@@ -2570,4 +2570,47 @@ describe('buildListItems property grouping', () => {
         const soloHeader = items.find(item => item.type === ListPaneItemType.HEADER && item.data === 'Solo');
         expect(soloHeader?.groupFilePaths).toEqual([singleList.path, scalar.path]);
     });
+
+    it('groups non-Markdown files by sidecar property overrides', () => {
+        const hub = createTestTFile('notes/Hub.html');
+        const plain = createTestTFile('notes/Plain.html');
+        const app = createApp();
+        const db = createDb({
+            [hub.path]: { tags: null, properties: null },
+            [plain.path]: { tags: null, properties: null }
+        });
+
+        const items = buildListItems({
+            app,
+            dayKey: '2026-03-07',
+            fileVisibility: FILE_VISIBILITY.SUPPORTED,
+            files: [hub, plain],
+            getDB: () => db,
+            getFileTimestamps: () => ({ created: 0, modified: 0 }),
+            hiddenFileState: new Map(),
+            hiddenTags: [],
+            listConfig: {
+                ...createListConfig({}),
+                groupBy: 'property:type'
+            },
+            searchMetaMap: new Map(),
+            selectedFolder: null,
+            selectedTag: null,
+            selectionType: ItemType.FOLDER,
+            showHiddenItems: false,
+            sortOption: 'title-asc',
+            filePropertyOverrides: {
+                [hub.path]: { type: 'Hub' }
+            }
+        });
+
+        expect(getHeaderItems(items)).toEqual([
+            { data: 'Hub', kind: 'property' },
+            { data: 'None', kind: 'property' }
+        ]);
+        expect(getFileItems(items).map(item => item.path)).toEqual([hub.path, plain.path]);
+
+        const hubHeader = items.find(item => item.type === ListPaneItemType.HEADER && item.data === 'Hub');
+        expect(hubHeader?.groupFilePaths).toEqual([hub.path]);
+    });
 });

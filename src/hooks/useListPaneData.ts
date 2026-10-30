@@ -416,7 +416,8 @@ export function useListPaneData({
             sortOption,
             propertySortKey: sortSpec.propertyKey,
             isManualSortActive,
-            manualSortGroupHeaderPropertyKey
+            manualSortGroupHeaderPropertyKey,
+            filePropertyOverrides: settings.filePropertyOverrides
         });
     }, [
         app,
@@ -433,6 +434,7 @@ export function useListPaneData({
         selectedProperty,
         selectedTag,
         selectionType,
+        settings.filePropertyOverrides,
         sortOption,
         sortSpec.propertyKey
     ]);
@@ -475,7 +477,8 @@ export function useListPaneData({
             isManualSortActive,
             manualSortGroupHeaderPropertyKey,
             wordCountTargetProperty: settings.wordCountTargetProperty,
-            groupItemCountData
+            groupItemCountData,
+            filePropertyOverrides: settings.filePropertyOverrides
         });
     }, [
         app,
@@ -501,6 +504,7 @@ export function useListPaneData({
         isManualSortActive,
         manualSortGroupHeaderPropertyKey,
         settings.wordCountTargetProperty,
+        settings.filePropertyOverrides,
         groupItemCountData
     ]);
 
