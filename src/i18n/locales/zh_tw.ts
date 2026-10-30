@@ -355,6 +355,7 @@ export const STRINGS_ZH_TW = {
             },
             addTag: '新增標籤',
             addPropertyKey: '設定屬性',
+            editProperties: 'Edit properties',
             removeTag: '移除標籤',
             removeAllTags: '移除所有標籤',
             changeIcon: '變更圖示',
@@ -634,6 +635,13 @@ export const STRINGS_ZH_TW = {
             resetBackground: '移除背景',
             clear: '清除樣式',
             apply: '套用'
+        },
+        fileProperties: {
+            addProperty: 'Add property',
+            removeProperty: 'Remove property',
+            keyPlaceholder: 'Property',
+            valuePlaceholder: 'Value',
+            duplicateKeyError: 'Property names must be unique.'
         },
         selectVaultProfile: {
             title: '選擇儲存庫設定檔',

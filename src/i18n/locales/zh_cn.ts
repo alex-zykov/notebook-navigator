@@ -354,6 +354,7 @@ export const STRINGS_ZH_CN = {
             },
             addTag: '添加标签',
             addPropertyKey: '设置属性',
+            editProperties: 'Edit properties',
             removeTag: '移除标签',
             removeAllTags: '移除所有标签',
             changeIcon: '更改图标',
@@ -633,6 +634,13 @@ export const STRINGS_ZH_CN = {
             resetBackground: '移除背景',
             clear: '清除样式',
             apply: '应用'
+        },
+        fileProperties: {
+            addProperty: 'Add property',
+            removeProperty: 'Remove property',
+            keyPlaceholder: 'Property',
+            valuePlaceholder: 'Value',
+            duplicateKeyError: 'Property names must be unique.'
         },
         selectVaultProfile: {
             title: '选择仓库配置文件',

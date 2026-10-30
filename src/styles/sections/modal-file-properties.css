@@ -1,0 +1,49 @@
+/* Source: src/styles/sections/modal-file-properties.css */
+
+/* ========================================================================
+   File Properties Modal
+   ======================================================================== */
+
+.modal.nn-file-properties-modal .modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-2-2);
+    padding: var(--size-4-4);
+    min-width: min(420px, 90vw);
+}
+
+.nn-file-properties-rows {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-1-5);
+    width: 100%;
+}
+
+.nn-file-properties-row {
+    display: flex;
+    align-items: center;
+    gap: var(--size-2-1);
+}
+
+.nn-file-properties-row .nn-input {
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+}
+
+.nn-file-properties-key {
+    flex: 0 1 36%;
+}
+
+.nn-file-properties-value {
+    flex: 1 1 50%;
+}
+
+.nn-file-properties-add {
+    align-self: flex-start;
+}
+
+.nn-file-properties-error {
+    color: var(--text-error);
+    font-size: var(--font-ui-small);
+}

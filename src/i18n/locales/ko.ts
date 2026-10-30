@@ -369,6 +369,7 @@ export const STRINGS_KO = {
             },
             addTag: '태그 추가',
             addPropertyKey: '속성 설정',
+            editProperties: 'Edit properties',
             removeTag: '태그 제거',
             removeAllTags: '모든 태그 제거',
             changeIcon: '아이콘 변경',
@@ -634,6 +635,13 @@ export const STRINGS_KO = {
             resetBackground: '배경 제거',
             clear: '스타일 지우기',
             apply: '적용'
+        },
+        fileProperties: {
+            addProperty: 'Add property',
+            removeProperty: 'Remove property',
+            keyPlaceholder: 'Property',
+            valuePlaceholder: 'Value',
+            duplicateKeyError: 'Property names must be unique.'
         },
         selectVaultProfile: {
             title: '보관함 프로필 선택',

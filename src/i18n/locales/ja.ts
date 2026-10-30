@@ -357,6 +357,7 @@ export const STRINGS_JA = {
             },
             addTag: 'タグを追加',
             addPropertyKey: 'プロパティを設定',
+            editProperties: 'Edit properties',
             removeTag: 'タグを削除',
             removeAllTags: 'すべてのタグを削除',
             changeIcon: 'アイコンを変更',
@@ -638,6 +639,13 @@ export const STRINGS_JA = {
             resetBackground: '背景を削除',
             clear: 'スタイルをクリア',
             apply: '適用'
+        },
+        fileProperties: {
+            addProperty: 'Add property',
+            removeProperty: 'Remove property',
+            keyPlaceholder: 'Property',
+            valuePlaceholder: 'Value',
+            duplicateKeyError: 'Property names must be unique.'
         },
         selectVaultProfile: {
             title: '保管庫プロファイルを選択',

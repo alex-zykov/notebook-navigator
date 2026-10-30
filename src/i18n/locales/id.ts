@@ -371,6 +371,7 @@ export const STRINGS_ID = {
             },
             addTag: 'Tambah tag',
             addPropertyKey: 'Atur properti',
+            editProperties: 'Edit properties',
             removeTag: 'Hapus tag',
             removeAllTags: 'Hapus semua tag',
             changeIcon: 'Ubah ikon',
@@ -637,6 +638,13 @@ export const STRINGS_ID = {
             resetBackground: 'Hapus latar belakang',
             clear: 'Bersihkan gaya',
             apply: 'Terapkan'
+        },
+        fileProperties: {
+            addProperty: 'Add property',
+            removeProperty: 'Remove property',
+            keyPlaceholder: 'Property',
+            valuePlaceholder: 'Value',
+            duplicateKeyError: 'Property names must be unique.'
         },
         selectVaultProfile: {
             title: 'Pilih profil vault',

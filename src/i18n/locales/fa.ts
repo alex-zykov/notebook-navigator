@@ -370,6 +370,7 @@ export const STRINGS_FA = {
             },
             addTag: 'افزودن برچسب',
             addPropertyKey: 'تنظیم ویژگی',
+            editProperties: 'Edit properties',
             removeTag: 'حذف برچسب',
             removeAllTags: 'حذف همه برچسب‌ها',
             changeIcon: 'تغییر آیکون',
@@ -636,6 +637,13 @@ export const STRINGS_FA = {
             resetBackground: 'حذف پس‌زمینه',
             clear: 'پاک کردن سبک',
             apply: 'اعمال'
+        },
+        fileProperties: {
+            addProperty: 'Add property',
+            removeProperty: 'Remove property',
+            keyPlaceholder: 'Property',
+            valuePlaceholder: 'Value',
+            duplicateKeyError: 'Property names must be unique.'
         },
         selectVaultProfile: {
             title: 'انتخاب پروفایل خزانه',

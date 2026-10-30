@@ -372,6 +372,7 @@ export const STRINGS_UK = {
             },
             addTag: 'Додати мітку',
             addPropertyKey: 'Встановити властивість',
+            editProperties: 'Edit properties',
             removeTag: 'Вилучити мітку',
             removeAllTags: 'Вилучити всі мітки',
             changeIcon: 'Змінити іконку',
@@ -638,6 +639,13 @@ export const STRINGS_UK = {
             resetBackground: 'Видалити фон',
             clear: 'Очистити стиль',
             apply: 'Застосувати'
+        },
+        fileProperties: {
+            addProperty: 'Add property',
+            removeProperty: 'Remove property',
+            keyPlaceholder: 'Property',
+            valuePlaceholder: 'Value',
+            duplicateKeyError: 'Property names must be unique.'
         },
         selectVaultProfile: {
             title: 'Вибрати профіль сховища',

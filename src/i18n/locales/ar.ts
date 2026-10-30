@@ -370,6 +370,7 @@ export const STRINGS_AR = {
             },
             addTag: 'إضافة وسم',
             addPropertyKey: 'تعيين خاصية',
+            editProperties: 'Edit properties',
             removeTag: 'إزالة وسم',
             removeAllTags: 'إزالة جميع الوسوم',
             changeIcon: 'تغيير الأيقونة',
@@ -635,6 +636,13 @@ export const STRINGS_AR = {
             resetBackground: 'إزالة الخلفية',
             clear: 'مسح النمط',
             apply: 'تطبيق'
+        },
+        fileProperties: {
+            addProperty: 'Add property',
+            removeProperty: 'Remove property',
+            keyPlaceholder: 'Property',
+            valuePlaceholder: 'Value',
+            duplicateKeyError: 'Property names must be unique.'
         },
         selectVaultProfile: {
             title: 'اختر ملف تعريف الخزنة',

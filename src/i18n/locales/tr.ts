@@ -371,6 +371,7 @@ export const STRINGS_TR = {
             },
             addTag: 'Etiket ekle',
             addPropertyKey: 'Özellik ayarla',
+            editProperties: 'Edit properties',
             removeTag: 'Etiketi kaldır',
             removeAllTags: 'Tüm etiketleri kaldır',
             changeIcon: 'Simgeyi değiştir',
@@ -636,6 +637,13 @@ export const STRINGS_TR = {
             resetBackground: 'Arka planı kaldır',
             clear: 'Stili temizle',
             apply: 'Uygula'
+        },
+        fileProperties: {
+            addProperty: 'Add property',
+            removeProperty: 'Remove property',
+            keyPlaceholder: 'Property',
+            valuePlaceholder: 'Value',
+            duplicateKeyError: 'Property names must be unique.'
         },
         selectVaultProfile: {
             title: 'Kasa profili seç',

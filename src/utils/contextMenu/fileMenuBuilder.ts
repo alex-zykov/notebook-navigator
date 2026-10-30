@@ -783,6 +783,28 @@ function addFileStyleActionsForFileContext(params: FileStyleActionsParams): void
         });
     });
 
+    const allNonMarkdown = targetFiles.length > 0 && targetFiles.every(selectedFile => selectedFile.extension !== 'md');
+    if (allNonMarkdown) {
+        menu.addItem((item: MenuItem) => {
+            setAsyncOnClick(item.setTitle(strings.contextMenu.file.editProperties).setIcon('lucide-list-plus'), async () => {
+                const { FilePropertiesModal } = await import('../../modals/FilePropertiesModal');
+                const isSingleFile = targetFiles.length === 1;
+                const modal = new FilePropertiesModal(app, {
+                    title: isSingleFile ? file.basename : strings.contextMenu.file.editProperties,
+                    initial: isSingleFile ? (metadataService.getFileProperties(file.path) ?? {}) : {},
+                    apply: async record => {
+                        if (isSingleFile) {
+                            await metadataService.setFileProperties(file.path, record);
+                            return;
+                        }
+                        await Promise.all(targetFiles.map(selectedFile => metadataService.mergeFileProperties(selectedFile.path, record)));
+                    }
+                });
+                modal.open();
+            });
+        });
+    }
+
     addStyleMenu({
         menu,
         styleData: {

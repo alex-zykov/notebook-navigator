@@ -371,6 +371,7 @@ export const STRINGS_PL = {
             },
             addTag: 'Dodaj tag',
             addPropertyKey: 'Ustaw atrybut',
+            editProperties: 'Edit properties',
             removeTag: 'Usuń tag',
             removeAllTags: 'Usuń wszystkie tagi',
             changeIcon: 'Zmień ikonkę',
@@ -639,6 +640,13 @@ export const STRINGS_PL = {
             resetBackground: 'Usuń tło',
             clear: 'Wyczyść styl',
             apply: 'Zastosuj'
+        },
+        fileProperties: {
+            addProperty: 'Add property',
+            removeProperty: 'Remove property',
+            keyPlaceholder: 'Property',
+            valuePlaceholder: 'Value',
+            duplicateKeyError: 'Property names must be unique.'
         },
         selectVaultProfile: {
             title: 'Zmień profil sejfu',

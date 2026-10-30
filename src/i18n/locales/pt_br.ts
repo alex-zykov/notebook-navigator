@@ -373,6 +373,7 @@ export const STRINGS_PT_BR = {
             },
             addTag: 'Adicionar etiqueta',
             addPropertyKey: 'Definir propriedade',
+            editProperties: 'Edit properties',
             removeTag: 'Remover etiqueta',
             removeAllTags: 'Remover todas as etiquetas',
             changeIcon: 'Alterar ícone',
@@ -639,6 +640,13 @@ export const STRINGS_PT_BR = {
             resetBackground: 'Remover plano de fundo',
             clear: 'Limpar estilo',
             apply: 'Aplicar'
+        },
+        fileProperties: {
+            addProperty: 'Add property',
+            removeProperty: 'Remove property',
+            keyPlaceholder: 'Property',
+            valuePlaceholder: 'Value',
+            duplicateKeyError: 'Property names must be unique.'
         },
         selectVaultProfile: {
             title: 'Alterar perfil do cofre',

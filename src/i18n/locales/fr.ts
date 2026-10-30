@@ -359,6 +359,7 @@ export const STRINGS_FR = {
             },
             addTag: 'Ajouter un mot-clé',
             addPropertyKey: 'Définir la propriété',
+            editProperties: 'Edit properties',
             removeTag: 'Supprimer le mot-clé',
             removeAllTags: 'Supprimer tous les mots-clés',
             changeIcon: "Changer l'icône",
@@ -640,6 +641,13 @@ export const STRINGS_FR = {
             resetBackground: "Supprimer l'arrière-plan",
             clear: 'Effacer le style',
             apply: 'Appliquer'
+        },
+        fileProperties: {
+            addProperty: 'Add property',
+            removeProperty: 'Remove property',
+            keyPlaceholder: 'Property',
+            valuePlaceholder: 'Value',
+            duplicateKeyError: 'Property names must be unique.'
         },
         selectVaultProfile: {
             title: 'Sélectionner le profil du coffre',

@@ -370,6 +370,7 @@ export const STRINGS_EN = {
             },
             addTag: 'Add tag',
             addPropertyKey: 'Set property',
+            editProperties: 'Edit properties',
             removeTag: 'Remove tag',
             removeAllTags: 'Remove all tags',
             changeIcon: 'Change icon',
@@ -635,6 +636,13 @@ export const STRINGS_EN = {
             resetBackground: 'Remove background',
             clear: 'Clear style',
             apply: 'Apply'
+        },
+        fileProperties: {
+            addProperty: 'Add property',
+            removeProperty: 'Remove property',
+            keyPlaceholder: 'Property',
+            valuePlaceholder: 'Value',
+            duplicateKeyError: 'Property names must be unique.'
         },
         selectVaultProfile: {
             title: 'Select vault profile',

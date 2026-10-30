@@ -144,19 +144,35 @@ export class Notice {
 }
 
 class StubElement {
+    value = '';
+
     setText(): void {}
 
     createDiv(): StubElement {
         return new StubElement();
     }
 
-    createEl(): StubElement {
-        return new StubElement();
+    createEl(_tag?: string, options?: { value?: string }): StubElement {
+        const el = new StubElement();
+        if (options?.value !== undefined) {
+            el.value = options.value;
+        }
+        return el;
     }
 
     empty(): void {}
 
     addClass(): void {}
+
+    removeClass(): void {}
+
+    hide(): void {}
+
+    show(): void {}
+
+    remove(): void {}
+
+    focus(): void {}
 }
 
 export class Modal {
@@ -531,7 +547,7 @@ export function stringifyYaml(obj: unknown): string {
             obj === 'null' ||
             obj === '~' ||
             /^-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?$/u.test(obj) ||
-            /[:#\[\]{},&*!|>'%@`]|^\s|\s$/u.test(obj)
+            /[:#[\]{},&*!|>'%@`]|^\s|\s$/u.test(obj)
         ) {
             return `${JSON.stringify(obj)}\n`;
         }
@@ -541,7 +557,7 @@ export function stringifyYaml(obj: unknown): string {
     if (Array.isArray(obj)) {
         const parts = obj.map(item => {
             if (typeof item === 'string') {
-                return /[:#\[\]{},&*!|>'%@`]|^\s|\s$/u.test(item) ? JSON.stringify(item) : item;
+                return /[:#[\]{},&*!|>'%@`]|^\s|\s$/u.test(item) ? JSON.stringify(item) : item;
             }
             if (typeof item === 'number' || typeof item === 'boolean' || item === null) {
                 return String(item);
@@ -573,7 +589,7 @@ export function stringifyYaml(obj: unknown): string {
         );
     }
 
-    return `${String(obj)}\n`;
+    return `${JSON.stringify(obj)}\n`;
 }
 
 export type CachedMetadata = {

@@ -371,6 +371,7 @@ export const STRINGS_RU = {
             },
             addTag: 'Добавить тег',
             addPropertyKey: 'Задать свойство',
+            editProperties: 'Изменить свойство',
             removeTag: 'Удалить тег',
             removeAllTags: 'Удалить все теги',
             changeIcon: 'Изменить иконку',
@@ -637,6 +638,13 @@ export const STRINGS_RU = {
             resetBackground: 'Удалить фон',
             clear: 'Очистить стиль',
             apply: 'Применить'
+        },
+        fileProperties: {
+            addProperty: 'Добавить свойство',
+            removeProperty: 'Удалить свойство',
+            keyPlaceholder: 'Свойство',
+            valuePlaceholder: 'Значение',
+            duplicateKeyError: 'Имена свойств должны быть уникальными.'
         },
         selectVaultProfile: {
             title: 'Выбор профиля хранилища',

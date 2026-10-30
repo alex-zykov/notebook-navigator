@@ -375,6 +375,7 @@ export const STRINGS_NL = {
             },
             addTag: 'Tag toevoegen',
             addPropertyKey: 'Eigenschap instellen',
+            editProperties: 'Edit properties',
             removeTag: 'Tag verwijderen',
             removeAllTags: 'Alle tags verwijderen',
             changeIcon: 'Pictogram wijzigen',
@@ -641,6 +642,13 @@ export const STRINGS_NL = {
             resetBackground: 'Achtergrond verwijderen',
             clear: 'Stijl wissen',
             apply: 'Toepassen'
+        },
+        fileProperties: {
+            addProperty: 'Add property',
+            removeProperty: 'Remove property',
+            keyPlaceholder: 'Property',
+            valuePlaceholder: 'Value',
+            duplicateKeyError: 'Property names must be unique.'
         },
         selectVaultProfile: {
             title: 'Kluisprofiel selecteren',

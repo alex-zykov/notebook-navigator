@@ -370,6 +370,7 @@ export const STRINGS_IT = {
             },
             addTag: 'Aggiungi etichetta',
             addPropertyKey: 'Imposta proprietà',
+            editProperties: 'Edit properties',
             removeTag: 'Rimuovi etichetta',
             removeAllTags: 'Rimuovi tutte le etichette',
             changeIcon: 'Cambia icona',
@@ -636,6 +637,13 @@ export const STRINGS_IT = {
             resetBackground: 'Rimuovi sfondo',
             clear: 'Cancella stile',
             apply: 'Applica'
+        },
+        fileProperties: {
+            addProperty: 'Add property',
+            removeProperty: 'Remove property',
+            keyPlaceholder: 'Property',
+            valuePlaceholder: 'Value',
+            duplicateKeyError: 'Property names must be unique.'
         },
         selectVaultProfile: {
             title: 'Seleziona profilo vault',

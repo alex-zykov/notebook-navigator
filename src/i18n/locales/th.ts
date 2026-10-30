@@ -370,6 +370,7 @@ export const STRINGS_TH = {
             },
             addTag: 'เพิ่มแท็ก',
             addPropertyKey: 'ตั้งค่าคุณสมบัติ',
+            editProperties: 'Edit properties',
             removeTag: 'นำแท็กออก',
             removeAllTags: 'นำแท็กทั้งหมดออก',
             changeIcon: 'เปลี่ยนไอคอน',
@@ -634,6 +635,13 @@ export const STRINGS_TH = {
             resetBackground: 'ลบพื้นหลัง',
             clear: 'ล้างสไตล์',
             apply: 'นำไปใช้'
+        },
+        fileProperties: {
+            addProperty: 'Add property',
+            removeProperty: 'Remove property',
+            keyPlaceholder: 'Property',
+            valuePlaceholder: 'Value',
+            duplicateKeyError: 'Property names must be unique.'
         },
         selectVaultProfile: {
             title: 'เลือกโปรไฟล์ห้องนิรภัย',

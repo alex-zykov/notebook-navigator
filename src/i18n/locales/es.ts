@@ -358,6 +358,7 @@ export const STRINGS_ES = {
             },
             addTag: 'Añadir etiqueta',
             addPropertyKey: 'Establecer propiedad',
+            editProperties: 'Edit properties',
             removeTag: 'Eliminar etiqueta',
             removeAllTags: 'Eliminar todas las etiquetas',
             changeIcon: 'Cambiar icono',
@@ -639,6 +640,13 @@ export const STRINGS_ES = {
             resetBackground: 'Quitar fondo',
             clear: 'Limpiar estilo',
             apply: 'Aplicar'
+        },
+        fileProperties: {
+            addProperty: 'Add property',
+            removeProperty: 'Remove property',
+            keyPlaceholder: 'Property',
+            valuePlaceholder: 'Value',
+            duplicateKeyError: 'Property names must be unique.'
         },
         selectVaultProfile: {
             title: 'Cambiar perfil de bóveda',

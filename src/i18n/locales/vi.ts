@@ -370,6 +370,7 @@ export const STRINGS_VI = {
             },
             addTag: 'Thêm thẻ',
             addPropertyKey: 'Đặt thuộc tính',
+            editProperties: 'Edit properties',
             removeTag: 'Gỡ thẻ',
             removeAllTags: 'Gỡ tất cả thẻ',
             changeIcon: 'Đổi biểu tượng',
@@ -636,6 +637,13 @@ export const STRINGS_VI = {
             resetBackground: 'Xóa nền',
             clear: 'Xóa kiểu',
             apply: 'Áp dụng'
+        },
+        fileProperties: {
+            addProperty: 'Add property',
+            removeProperty: 'Remove property',
+            keyPlaceholder: 'Property',
+            valuePlaceholder: 'Value',
+            duplicateKeyError: 'Property names must be unique.'
         },
         selectVaultProfile: {
             title: 'Chọn hồ sơ vault',
